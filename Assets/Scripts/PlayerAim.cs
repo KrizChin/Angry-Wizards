@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
+    Camera mainCamera;
+
+    void Awake()
+    {
+        mainCamera = Camera.main;
+    }
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
