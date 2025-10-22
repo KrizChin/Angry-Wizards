@@ -23,6 +23,20 @@ public class TrajectoryLine : MonoBehaviour
         lineRenderer.endWidth = 0.05f;
 
         gravity = Mathf.Abs(Physics2D.gravity.y);
+
+        // Create a color gradient that fades out along the line.
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] {
+                new GradientColorKey(Color.cyan, 0.0f), // Start color
+                new GradientColorKey(Color.blue, 1.0f) // End color
+                },
+            new GradientAlphaKey[] {
+                new GradientAlphaKey(1.0f, 0.0f),
+                new GradientAlphaKey(0.0f, 1.0f)
+                }
+        );
+        lineRenderer.colorGradient = gradient;
     }
 
     public void ShowTrajectory(Vector2 startPos, Vector2 startVelocity)
