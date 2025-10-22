@@ -10,18 +10,33 @@ public class SpellLauncher : MonoBehaviour
     public Transform launchPoint;
     public float launchForce = 10f;
     private float chargeTime = 0f;
+    private TrajectoryLine trajectoryLine;
+
+    void Start()
+    {
+        trajectoryLine = GetComponent<TrajectoryLine>();
+        // Find the trajectory component in the GameObject.
+    }
     void Update()
     {
         if (Input.GetMouseButton(0))
-            chargeTime += Time.deltaTime;
-        //if left mouse button is held then increases charget time every frame.
-
-        if (Input.GetMouseButtonUp(0))
         {
-            LaunchSpell();
-            chargeTime = 0f;
-            //If the button is realeased then it calls LaunchSpell function and resets charge time.
+            chargeTime += Time.deltaTime;
+            //if left mouse button is held then increases target time every frame.
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = (mousePos - launchPoint.position).normalized;
+            float finalForce = Mathf.Clamp(launchForce * (1 + chargeTime), launchForce, launchForce * 3);
+            Vector2 velocity = direction * finalForce;
+            
+            trajectoryLine.ShowTrajectory(launchPoint.position, velocity);
         }
+        if (Input.GetMouseButtonUp(0))
+            {
+                LaunchSpell();
+                chargeTime = 0f;
+            trajectoryLine.HideTrajectory();
+                //If the button is realeased then it calls LaunchSpell function and resets charge time.
+            }
     }
 
     void LaunchSpell()
