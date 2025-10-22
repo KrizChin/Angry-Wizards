@@ -15,6 +15,8 @@ public class TrajectoryLine : MonoBehaviour
     public float timeStep = 0.1f; // Time between points
     private float gravity;
 
+    public float maxDistance = 10f; // Maximum distance before trajectory line stops.
+
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -23,38 +25,29 @@ public class TrajectoryLine : MonoBehaviour
         lineRenderer.endWidth = 0.05f;
 
         gravity = Mathf.Abs(Physics2D.gravity.y);
-
-        // Create a color gradient that fades out along the line.
-        Gradient gradient = new Gradient();
-        gradient.SetKeys(
-            new GradientColorKey[] {
-                new GradientColorKey(Color.cyan, 0.0f), // Start color
-                new GradientColorKey(Color.blue, 1.0f) // End color
-                },
-            new GradientAlphaKey[] {
-                new GradientAlphaKey(1.0f, 0.0f),
-                new GradientAlphaKey(0.0f, 1.0f)
-                }
-        );
-        lineRenderer.colorGradient = gradient;
     }
 
     public void ShowTrajectory(Vector2 startPos, Vector2 startVelocity)
     {
-        Vector3[] points = new Vector3[lineSegmentCount];
+        List<Vector3> points = new List<Vector3>();
+
+        float t = 0f;
 
         for (int i = 0; i < lineSegmentCount; i++)
         {
-            float t = i * timeStep;
-
             float x = startPos.x + startVelocity.x * t;
             float y = startPos.y + startVelocity.y * t - 0.5f * gravity * t * t;
+            Vector3 newPoint = new Vector3(x, y, 0);
 
-            points[i] = new Vector3(x, y, 0);
+            points.Add(newPoint);
+
+            if (Vector2.Distance(startPos, newPoint) >= maxDistance)
+                break;
+            t += timeStep;
         }
 
-        lineRenderer.positionCount = lineSegmentCount;
-        lineRenderer.SetPositions(points);
+        lineRenderer.positionCount = points.Count;
+        lineRenderer.SetPositions(points.ToArray());
     }
 
     public void HideTrajectory()
