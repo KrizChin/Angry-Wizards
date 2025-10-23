@@ -11,11 +11,11 @@ public class TrajectoryLine : MonoBehaviour
     public Transform launchPoint;
 
     [Header("Settings")]
-    public int lineSegmentCount = 30; // The amount of points to draw
+    public int lineSegmentCount = 4; // The amount of points to draw
     public float timeStep = 0.1f; // Time between points
     private float gravity;
 
-    public float maxDistance = 10f; // Maximum distance before trajectory line stops.
+    public float maxDistance = 12f; // Maximum distance before trajectory line stops.
 
     void Awake()
     {

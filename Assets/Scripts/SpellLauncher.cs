@@ -8,7 +8,7 @@ public class SpellLauncher : MonoBehaviour
 {
     public GameObject spellPrefab;
     public Transform launchPoint;
-    public float launchForce = 10f;
+    public float launchForce = 7f;
     private float chargeTime = 0f;
     private TrajectoryLine trajectoryLine;
 
@@ -23,10 +23,8 @@ public class SpellLauncher : MonoBehaviour
         {
             chargeTime += Time.deltaTime;
             //if left mouse button is held then increases target time every frame.
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (mousePos - launchPoint.position).normalized;
             float finalForce = Mathf.Clamp(launchForce * (1 + chargeTime), launchForce, launchForce * 3);
-            Vector2 velocity = direction * finalForce;
+            Vector2 velocity = (Vector2)(launchPoint.right * finalForce);
             
             trajectoryLine.ShowTrajectory(launchPoint.position, velocity);
         }

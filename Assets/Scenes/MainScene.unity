@@ -388,7 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 7167079701871510344, guid: 1867a1a67e3cf26458fd75f0af01d3c3, type: 3}
   launchPoint: {fileID: 1366906497}
-  launchForce: 10
+  launchForce: 7
 --- !u!120 &1929728184
 LineRenderer:
   serializedVersion: 2
@@ -507,9 +507,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1929728184}
   launchPoint: {fileID: 1366906497}
-  lineSegmentCount: 10
+  lineSegmentCount: 4
   timeStep: 0.1
-  maxDistance: 10
+  maxDistance: 12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
