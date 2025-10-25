@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4334999485998000990}
   - component: {fileID: 4470319920108732433}
   - component: {fileID: 2461982799943570639}
+  - component: {fileID: 8796387443270629048}
   m_Layer: 0
-  m_Name: SpellProjectile
+  m_Name: SpellProjectilePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,3 +149,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8796387443270629048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7167079701871510344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b383a2e356db6419517a0991251c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
