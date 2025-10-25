@@ -7,15 +7,25 @@ using UnityEngine;
 public class SpellProjectile : MonoBehaviour
 {
     public float lifetime = 7f;
-    public float impactDamage = 20f;
+    public float damage = 20f;
+    public bool destroyOnImpact = true;
+
     void Start()
     {
         Destroy(gameObject, lifetime);
     }
 
-    void OnCollision(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        //Future Logic
-        Destroy(gameObject);
+        Destructible destructible = collision.collider.GetComponent<Destructible>();
+        if (destructible != null)
+        {
+            destructible.TakeDamage(damage);
+        }
+        
+        if (destroyOnImpact)
+        {
+            Destroy(gameObject);
+        }
     }
 }
