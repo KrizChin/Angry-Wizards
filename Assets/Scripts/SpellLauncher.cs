@@ -23,6 +23,12 @@ public class SpellLauncher : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            if (playerMana == null || !playerMana.CanCast())
+            {
+                trajectoryLine.HideTrajectory(); // Hides line if out of mana
+                return;
+            }
+
             chargeTime += Time.deltaTime;
             //if left mouse button is held then increases target time every frame.
             float finalForce = Mathf.Clamp(launchForce * (1 + chargeTime), launchForce, launchForce * 3);
@@ -36,14 +42,13 @@ public class SpellLauncher : MonoBehaviour
                 {
                     LaunchSpell();
                     playerMana.SpendMana();
-                    trajectoryLine.HideTrajectory();
-                    //If the button is realeased then it calls LaunchSpell function and resets charge time.
                 }
                 else
                 {
                     Debug.Log("Not enough mana!");
                 }
                 chargeTime = 0f;
+                trajectoryLine.HideTrajectory();
             }
     }
 
