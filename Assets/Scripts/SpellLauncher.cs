@@ -11,11 +11,13 @@ public class SpellLauncher : MonoBehaviour
     public float launchForce = 7f;
     private float chargeTime = 0f;
     private TrajectoryLine trajectoryLine;
+    private PlayerMana playerMana;
 
     void Start()
     {
         trajectoryLine = GetComponent<TrajectoryLine>();
         // Find the trajectory component in the GameObject.
+        playerMana = GetComponentInParent<PlayerMana>();
     }
     void Update()
     {
