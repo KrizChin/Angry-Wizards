@@ -27,15 +27,23 @@ public class SpellLauncher : MonoBehaviour
             //if left mouse button is held then increases target time every frame.
             float finalForce = Mathf.Clamp(launchForce * (1 + chargeTime), launchForce, launchForce * 3);
             Vector2 velocity = (Vector2)(launchPoint.right * finalForce);
-            
             trajectoryLine.ShowTrajectory(launchPoint.position, velocity);
+            // these three lines create a visual prediction of where the spell will go.
         }
         if (Input.GetMouseButtonUp(0))
             {
-                LaunchSpell();
+                if (playerMana != null && playerMana.CanCast())
+                {
+                    LaunchSpell();
+                    playerMana.SpendMana();
+                    trajectoryLine.HideTrajectory();
+                    //If the button is realeased then it calls LaunchSpell function and resets charge time.
+                }
+                else
+                {
+                    Debug.Log("Not enough mana!");
+                }
                 chargeTime = 0f;
-            trajectoryLine.HideTrajectory();
-                //If the button is realeased then it calls LaunchSpell function and resets charge time.
             }
     }
 
