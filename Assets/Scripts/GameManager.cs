@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 // This script keeps track of total enemies and if the player wins.
 
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     private int totalEnemies;
     private int defeatedEnemies;
+
+    public TMP_Text victoryText;
 
     void Awake()
     {
@@ -39,7 +42,16 @@ public class GameManager : MonoBehaviour
         if (defeatedEnemies >= totalEnemies)
         {
             Debug.Log("You Win!");
-            // ADD win screen later
+            if (victoryText != null)
+            {
+                victoryText.gameObject.SetActive(true);
+            }
         }
+    }
+
+    public void PlayerLost()
+    {
+        Debug.Log("You Lose! :(");
+        // Add mana ui later
     }
 }
