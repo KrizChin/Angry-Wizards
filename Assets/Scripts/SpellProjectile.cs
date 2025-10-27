@@ -17,10 +17,18 @@ public class SpellProjectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // Damage destructibles
         Destructible destructible = collision.collider.GetComponent<Destructible>();
         if (destructible != null)
         {
             destructible.TakeDamage(damage);
+        }
+        
+        // Damage enemies
+        Enemy enemy = collision.collider.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
         }
         
         if (destroyOnImpact)
