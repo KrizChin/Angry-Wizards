@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
             {
                 victoryText.gameObject.SetActive(true);
             }
+            else
+            {
+                Debug.LogWarning("VictoryText reference missing in GameManager!");
+            }
         }
     }
 
