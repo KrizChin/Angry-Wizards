@@ -523,7 +523,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mana: 100'
+  m_text: 'Mana:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 7167079701871510344, guid: 1867a1a67e3cf26458fd75f0af01d3c3, type: 3}
   launchPoint: {fileID: 1366906497}
-  launchForce: 7
+  launchForce: 4
 --- !u!120 &1929728184
 LineRenderer:
   serializedVersion: 2
@@ -2010,7 +2010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e713dd4bb195774b8055ca14baa7475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMana: 100
+  maxMana: 200
   currentMana: 0
   spellCost: 20
   manaText: {fileID: 556427687}
