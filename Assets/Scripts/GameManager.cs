@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public LosePanel losePanel;
 
     public bool gameActive = true;
+    public bool gameOver = false; // prevents lose screen on last shot
 
     void Awake()
     {
@@ -44,9 +45,16 @@ public class GameManager : MonoBehaviour
     {
         defeatedEnemies++;
 
+        if (gameOver)
+        {
+            return;
+        }
+
         if (defeatedEnemies >= totalEnemies)
         {
             Debug.Log("You Win!");
+            gameOver = true;
+            gameActive = false;
             if (victoryText != null)
             {
                 victoryText.gameObject.SetActive(true);
@@ -60,8 +68,14 @@ public class GameManager : MonoBehaviour
 
     public void PlayerLost()
     {
+        if (gameOver) 
+        {
+            return;
+        }
+
         Debug.Log("You Lose! :(");
         gameActive = false; // stops player input
+        gameOver = true;
 
         if(losePanel != null)
         {
