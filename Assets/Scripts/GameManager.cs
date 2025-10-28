@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public bool gameActive = true;
     public bool gameOver = false; // prevents lose screen on last shot
 
+    public int activeProjectiles = 0;
+    public PlayerMana playerMana;
+
     void Awake()
     {
         // Makes sure there is only one GameManager
@@ -80,6 +83,14 @@ public class GameManager : MonoBehaviour
         if(losePanel != null)
         {
             losePanel.gameObject.SetActive(true);
+        }
+    }
+
+    public void CheckForLoss()
+    {
+        if (playerMana.currentMana <= 0 && activeProjectiles <= 0 && !gameOver)
+        {
+            PlayerLost();
         }
     }
 }

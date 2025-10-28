@@ -36,4 +36,12 @@ public class SpellProjectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.activeProjectiles--;
+        }
+    }
 }

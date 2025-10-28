@@ -76,5 +76,7 @@ public class SpellLauncher : MonoBehaviour
         //Gets the rigidbody component of the spawned spell so we can apply physics to it.
         rb.AddForce(launchPoint.right * finalForce, ForceMode2D.Impulse);
         //Applies an instantaneous force to the spell in the direction the player is facing.
+
+        GameManager.Instance.activeProjectiles++;
     }
 }

@@ -35,7 +35,7 @@ public class PlayerMana : MonoBehaviour
         if (currentMana <= 0)
         {
             currentMana = 0;
-            GameManager.Instance.PlayerLost();
+            GameManager.Instance.CheckForLoss();
         }
     }
 
