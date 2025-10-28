@@ -21,6 +21,11 @@ public class SpellLauncher : MonoBehaviour
     }
     void Update()
     {
+        // Prevent the player from shooting when game is not active (i.e. pause menu)
+        if (GameManager.Instance != null && !GameManager.Instance.gameActive)
+        {
+            return;
+        }
         if (Input.GetMouseButton(0))
         {
             if (playerMana == null || !playerMana.CanCast())
