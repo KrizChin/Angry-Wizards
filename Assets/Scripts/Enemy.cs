@@ -7,7 +7,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Health Settings")]
-    public float maxHealth = 50f;
+    public float maxHealth = 40f;
     private float currentHealth;
 
     [Header("References")]
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     [Header("SFX")]
     public AudioSource deathSFX; 
 
-    void start()
+    void Start()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+            Debug.Log(gameObject.name + " took " + damage + " damage. Remaining: " + currentHealth);
+
 
         if (currentHealth <= 0)
         {

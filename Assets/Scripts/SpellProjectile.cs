@@ -30,7 +30,7 @@ public class SpellProjectile : MonoBehaviour
         {
             enemy.TakeDamage(damage);
         }
-        
+
         if (destroyOnImpact)
         {
             Destroy(gameObject);
