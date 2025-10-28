@@ -12,14 +12,12 @@ public class SpellLauncher : MonoBehaviour
     private float chargeTime = 0f;
     private TrajectoryLine trajectoryLine;
     private PlayerMana playerMana;
-    private AudioSource audioSource;
 
     void Start()
     {
         trajectoryLine = GetComponent<TrajectoryLine>();
         // Find the trajectory component in the GameObject.
         playerMana = GetComponentInParent<PlayerMana>();
-        audioSource = GetComponent<AudioSource>(); // sfx
     }
     void Update()
     {
@@ -63,12 +61,6 @@ public class SpellLauncher : MonoBehaviour
     {
         float finalForce = Mathf.Clamp(launchForce * (1 + chargeTime), launchForce, launchForce * 3);
         //Calculates the strength of the spell based on charge time with a max limit.
-
-        if (audioSource != null)
-        {
-            audioSource.Play();
-        }
-
         GameObject spell = Instantiate(spellPrefab, launchPoint.position, launchPoint.rotation);
         //Spawns a copy of the spell prefab at the launchPoint location and rotation.
         Rigidbody2D rb = spell.GetComponent<Rigidbody2D>();
