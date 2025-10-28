@@ -66,6 +66,7 @@ public class SpellLauncher : MonoBehaviour
 
         if (audioSource != null)
         {
+            audioSource.pitch = Random.Range(1.2f, 1.4f);
             audioSource.Play();
         }
 

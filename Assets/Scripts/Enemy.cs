@@ -12,11 +12,17 @@ public class Enemy : MonoBehaviour
 
     [Header("References")]
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+
+    [Header("SFX")]
+    public AudioSource deathSFX; 
 
     void start()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        deathSFX = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(float damage)
@@ -37,11 +43,17 @@ public class Enemy : MonoBehaviour
         {
             sr.color = Color.red;
         }
-        yield return new WaitForSeconds(0.2f);
 
-        // Notify GameManager that an enemy died
-        GameManager.Instance.EnemyDefeated();
+        if (deathSFX != null)
+        {
+            deathSFX.pitch = Random.Range(0.9f, 1.1f);
+            deathSFX.Play();
+        }
+
+        yield return new WaitForSeconds(deathSFX.clip.length);
 
         Destroy(gameObject);
+        // Notify GameManager that an enemy died
+        GameManager.Instance.EnemyDefeated();
     }
 }
