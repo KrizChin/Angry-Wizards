@@ -88,8 +88,11 @@ public class GameManager : MonoBehaviour
 
     public void CheckForLoss()
     {
+        Debug.Log("CheckForLoss() called"); // Debug line
+
         if (playerMana.currentMana <= 0 && activeProjectiles <= 0 && !gameOver)
         {
+            Debug.Log("Loss Condition met!");
             PlayerLost();
         }
     }

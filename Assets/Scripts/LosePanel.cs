@@ -12,7 +12,7 @@ public class LosePanel : MonoBehaviour
     public Button restartButton;
     public Button mainMenuButton;
 
-    void start()
+    void Start()
     {
         restartButton.onClick.AddListener(RestartLevel);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
@@ -23,9 +23,6 @@ public class LosePanel : MonoBehaviour
         // Reloads the currently active scene
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
-
-        // Debug test
-        restartButton.onClick.AddListener(() => Debug.Log("Restart button clicker:"));
     }
 
     public void GoToMainMenu()
