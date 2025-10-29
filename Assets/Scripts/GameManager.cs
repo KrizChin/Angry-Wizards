@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
         if(losePanel != null)
         {
-            Panel.gameObject.SetActive(true);
+            losePanel.gameObject.SetActive(true);
         }
     }
 
