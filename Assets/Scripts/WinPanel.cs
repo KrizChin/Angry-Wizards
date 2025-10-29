@@ -41,7 +41,7 @@ public class WinPanel : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
