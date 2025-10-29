@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource loseSFX;
 
+    public WinPanel winPanel;
+
     void Awake()
     {
         // Makes sure there is only one GameManager
@@ -68,9 +70,9 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameActive = false;
         yield return new WaitForSeconds(2.5f);
-        if (victoryText != null)
+        if (winPanel != null)
         {
-            victoryText.gameObject.SetActive(true);
+            winPanel.gameObject.SetActive(true);
         }
         else
         {
