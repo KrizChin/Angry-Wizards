@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public int activeProjectiles = 0;
     public PlayerMana playerMana;
 
+    [Header("Audio")]
+    public AudioSource loseSFX;
+
     void Awake()
     {
         // Makes sure there is only one GameManager
@@ -85,6 +88,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("You Lose! :(");
         gameActive = false; // stops player input
         gameOver = true;
+
+        if (loseSFX != null)
+        {
+            loseSFX.Play();
+        }
 
         if(losePanel != null)
         {
