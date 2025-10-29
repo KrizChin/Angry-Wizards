@@ -56,16 +56,22 @@ public class GameManager : MonoBehaviour
         if (defeatedEnemies >= totalEnemies)
         {
             Debug.Log("You Win!");
-            gameOver = true;
-            gameActive = false;
-            if (victoryText != null)
-            {
-                victoryText.gameObject.SetActive(true);
-            }
-            else
-            {
-                Debug.LogWarning("VictoryText reference missing in GameManager!");
-            }
+            StartCoroutine(HandleWinDelay());
+        }
+    }
+
+    private IEnumerator HandleWinDelay()
+    {
+        gameOver = true;
+        gameActive = false;
+        yield return new WaitForSeconds(2.5f);
+        if (victoryText != null)
+        {
+            victoryText.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("VictoryText reference missing in GameManager!");
         }
     }
 
@@ -88,12 +94,21 @@ public class GameManager : MonoBehaviour
 
     public void CheckForLoss()
     {
-        Debug.Log("CheckForLoss() called"); // Debug line
-
-        if (playerMana.currentMana <= 0 && activeProjectiles <= 0 && !gameOver)
+        if (gameOver)
         {
-            Debug.Log("Loss Condition met!");
-            PlayerLost();
+            return;
+        }
+
+        if (playerMana.currentMana <= 0 && activeProjectiles <= 0)
+        {
+            if (defeatedEnemies >= totalEnemies)
+            {
+                EnemyDefeated();
+            }
+            else
+            {
+                PlayerLost();
+            }
         }
     }
 }

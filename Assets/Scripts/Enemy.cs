@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
 
     IEnumerator HandleDeath()
     {
+        // Notify GameManager that an enemy died
+        GameManager.Instance.EnemyDefeated();
         // Turn red before dying
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
@@ -55,7 +57,5 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(deathSFX.clip.length);
 
         Destroy(gameObject);
-        // Notify GameManager that an enemy died
-        GameManager.Instance.EnemyDefeated();
     }
 }

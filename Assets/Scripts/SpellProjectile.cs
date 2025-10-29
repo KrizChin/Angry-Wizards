@@ -42,9 +42,7 @@ public class SpellProjectile : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.activeProjectiles--;
-
             GameManager.Instance.CheckForLoss();
-            Debug.Log("Projectile destroyed, activeProjectiles = " + GameManager.Instance.activeProjectiles);
         }
     }
 }
