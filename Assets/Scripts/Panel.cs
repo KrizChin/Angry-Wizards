@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 // This scipt will handle the lose panel and make it appear when the player runs out of mana.
 
-public class LosePanel : MonoBehaviour
+public class Panel : MonoBehaviour
 {
     [Header("Buttons")]
     public Button restartButton;
