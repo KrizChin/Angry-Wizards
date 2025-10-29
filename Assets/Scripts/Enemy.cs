@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     [Header("SFX")]
     public AudioSource deathSFX; 
 
+    private bool isDying = false;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -27,6 +29,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isDying)
+        {
+            return;
+        }
         currentHealth -= damage;
             Debug.Log(gameObject.name + " took " + damage + " damage. Remaining: " + currentHealth);
 
@@ -39,8 +45,11 @@ public class Enemy : MonoBehaviour
 
     IEnumerator HandleDeath()
     {
+        isDying = true;
+
         // Notify GameManager that an enemy died
         GameManager.Instance.EnemyDefeated();
+
         // Turn red before dying
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
@@ -52,9 +61,8 @@ public class Enemy : MonoBehaviour
         {
             deathSFX.pitch = Random.Range(0.9f, 1.1f);
             deathSFX.Play();
+            yield return new WaitForSeconds(deathSFX.clip.length);
         }
-
-        yield return new WaitForSeconds(deathSFX.clip.length);
 
         Destroy(gameObject);
     }
